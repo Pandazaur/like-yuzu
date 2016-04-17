@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./tests/like-button.spec.js",
     "start": "node app.js 8888"
   },
   "author": "",
@@ -15,5 +15,10 @@
     "express": "^4.13.4",
     "morgan": "^1.7.0",
     "sqlite3": "^3.1.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "request": "^2.71.0"
   }
 }
