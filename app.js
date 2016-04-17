@@ -22,7 +22,7 @@ try {
     console.error(e);
 }
 
-//_Récuération du nombres de "Like" d'une page
+//_Récupération du nombres de "Like" d'une page
 app.get('/api/page/likes/:page', (req, res) => {
 
     //_On cherche le nombre de like pour cette page

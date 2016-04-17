@@ -92,7 +92,7 @@ describe('Test de la base de données:', () => {
                 } else {                            //_Problème de cohérence des données
                     expect(canLike).to.equal(true);
                 }
-
+                
                 expect(canLike).to.equal(false);
             });
         });

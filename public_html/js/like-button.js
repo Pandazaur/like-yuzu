@@ -44,12 +44,15 @@ var likeButton = Vue.extend({
         addLike: function () {
             var self = this;
 
+            var idxLastSlash = window.location.href.lastIndexOf('/');
+            var htmlFile = window.location.href.substr(idxLastSlash+1);
+
             if(this.canLike === true) {
                 //_Like la page
                 jQuery.ajax({
                     method: 'POST',
                     url: `http://${IP_SERVER}:${PORT_SERVER}/api/page/like/`,
-                    data: {page: jQuery('h1').html()},
+                    data: {page: htmlFile},
                     success: function () {
                         self.nbLikes++;
                         self.likeSentence = 'You like this page !'
@@ -66,12 +69,16 @@ var likeButton = Vue.extend({
         checkPageInfo: function (callback) {
             var _nbLikes = null;
             var _canLike = null;
-            console.log('>> ' +  'http://'+ IP_SERVER + ':' +PORT_SERVER + '/api/page/likes/'+jQuery('h1').html());
+
+            var idxLastSlash = window.location.href.lastIndexOf('/');
+            var htmlFile = window.location.href.substr(idxLastSlash+1);
+
+            console.log(`>> http://${IP_SERVER}:${PORT_SERVER}/api/page/likes/${htmlFile}`);
 
             //_On récupère le nombre de like pour cette page
             jQuery.ajax({
                 method: 'GET',
-                url: `http://${IP_SERVER}:${PORT_SERVER}/api/page/likes/${jQuery('h1').html()}`,
+                url: `http://${IP_SERVER}:${PORT_SERVER}/api/page/likes/${htmlFile}`,
                 data: {},
                 success: function (data) {
                     _nbLikes = data.totalLike;
@@ -82,11 +89,11 @@ var likeButton = Vue.extend({
                 }
             }).done( function () {
                 //_Récupération de la possibilité de like
-                console.log('>> ' + `http://${IP_SERVER}:${PORT_SERVER}/api/can-like/${jQuery('h1').html()}`);
+                console.log(`>> http://${IP_SERVER}:${PORT_SERVER}/api/can-like/${htmlFile}`);
 
                 jQuery.ajax({
                     method: 'GET',
-                    url: `http://${IP_SERVER}:${PORT_SERVER}/api/can-like/${jQuery('h1').html()}`,
+                    url: `http://${IP_SERVER}:${PORT_SERVER}/api/can-like/${htmlFile}`,
                     data: {},
                     success: function (data) {
                         _canLike = data.canLike;
