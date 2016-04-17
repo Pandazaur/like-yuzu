@@ -1,0 +1,2 @@
+var IP_SERVER = '192.168.1.92';
+var PORT_SERVER = '8888';
