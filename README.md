@@ -16,11 +16,17 @@
 * jQuery v2.2
 * Vue.js v1.0
 * Node.js v5.8
+* Gulp (`npm install gulp -g`)
+
+## Tests fonctionnels
+
+Les tests fonctionnels se lancent par la commande `npm test` qui affiche l'exécution des tests.
 
 ## Export en production
 
-Pour exporter en production le bouton Like, il suffit d'importer les fichiers javascripts dans le code ci-dessous.
-Puis il faut ensuite utiliser le tag `<like></like>` dans le fichier HTML.
+Utiliser la commande `npm run build` pour concaténer tous les fichiers javascript en un seul après les développements.
+
+Pour exporter en production le bouton Like, il suffit seulement d'ajouter le script javascript `public_html/js/all.js` sur la page souhaitée, puis il faut ensuite utiliser le tag `<like></like>` dans le fichier HTML.
 
 ```html
 <html>
@@ -28,12 +34,10 @@ Puis il faut ensuite utiliser le tag `<like></like>` dans le fichier HTML.
         [...]
         <like></like>
         [...]
-        <script src="https://code.jquery.com/jquery-2.2.3.min.js" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
-        <script src="js/const.js" charset="utf-8"></script>
-        <script src="js/like-button.js"></script>
+        <script src="js/const.js"></script>
+        <script src="js/all.js"></script>
     </body>
 <html>
 ```
 
-Du coté serveur, il y a juste a reprendre les instructions du chapitre __Lancement de l'app de test__
+Du coté serveur, il y a juste à reprendre les instructions du chapitre __Lancement de l'app de test__

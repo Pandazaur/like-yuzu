@@ -23,12 +23,13 @@ try {
 }
 
 //_Récupération du nombres de "Like" d'une page
-app.get('/api/page/likes/:page', (req, res) => {
+app.post('/api/page/likes/', (req, res) => {
+    let page = req.body.page;
 
     //_On cherche le nombre de like pour cette page
     db.get(`SELECT COUNT(*) AS totalLike
             FROM Like
-            WHERE page='${req.params.page}'`, (err, row) => {
+            WHERE page='${page}'`, (err, row) => {
         if(err) throw err;
 
         res.json({totalLike: row.totalLike});
@@ -36,14 +37,15 @@ app.get('/api/page/likes/:page', (req, res) => {
 });
 
 //_Voit si on peut liker une page
-app.get('/api/can-like/:page', (req,res) => {
+app.post('/api/can-like/', (req,res) => {
     let canLike = null;
+    let page = req.body.page;
 
     //_On vérifie déjà si l'utilsateur a liké la page une fois déja.
     db.get(`SELECT COUNT(*) AS nbLike
             FROM Like
             WHERE ip='${req.ip}'
-                AND page='${req.params.page}'`, (err, row) => {
+                AND page='${page}'`, (err, row) => {
         if(err) throw err;
 
         if (row.nbLike === 0) {                //_L'utilisateur n'a jamais "like" cette page.
